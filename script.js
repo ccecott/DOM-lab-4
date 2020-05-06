@@ -26,7 +26,7 @@ buttonContainer.addEventListener("click", (event) => {
         let amount = Number(event.target.getAttribute("data-amount"));
         console.log(amount);
         currentTotal += amount;
-        total.innerText = `Total $${currentTotal}.00`;
+        total.innerText = `Total $${currentTotal.toFixed(2)}`;
     }
 });
 
@@ -61,21 +61,28 @@ let lightbulb = document.querySelector(".light");
 bulbContainer.addEventListener("click", (event) => {
     console.log(event);
     if (event.target.classList.contains("on")) {
-        lightbulb.style.backgroundColor = "red";
+        lightbulb.classList.add("turn-on")
+        // lightbulb.style.backgroundColor = "red";
     } else if (event.target.classList.contains("off")) {
-        lightbulb.style.backgroundColor = "grey";
+        lightbulb.classList.remove("turn-on")
+        //lightbulb.style.backgroundColor = "grey";
     } else if (event.target.classList.contains("toggle")) {
-        if (lightbulb.style.backgroundColor === "grey") {
-            lightbulb.style.backgroundColor = "red";
-        } else {
-            lightbulb.style.backgroundColor = "grey"
-        }
+        lightbulb.classList.toggle("turn-on")
+        // if (lightbulb.style.backgroundColor === "grey") {
+        //     lightbulb.style.backgroundColor = "red";
+        // } else {
+        //     lightbulb.style.backgroundColor = "grey"
+        // }
     } else if (event.target.classList.contains("end")) {
         lightbulb.remove();
-        document.querySelector(".on").disabled = true;
-        document.querySelector(".off").disabled = true;
-        document.querySelector(".toggle").disabled = true;
-        document.querySelector(".end").disabled = true;
+        let bulbButtons = document.querySelectorAll(".bulb");
+        bulbButtons.forEach((button) => {
+            button.disabled = true;
+        })
+        // document.querySelector(".on").disabled = true;
+        // document.querySelector(".off").disabled = true;
+        // document.querySelector(".toggle").disabled = true;
+        // document.querySelector(".end").disabled = true;
 
     }
 
